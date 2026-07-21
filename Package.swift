@@ -22,11 +22,10 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/fmcgoohan/SwiftSpeechSuite.git", from: "0.1.0"),
-        // Pinned to match the reproducible benchmark revision.
-        .package(
-            url: "https://github.com/Blaizzy/mlx-audio-swift.git",
-            revision: "d302a5c6080d2bb97bae38c7418f82abb76013b6"
-        ),
+        // v0.1.3 == commit d302a5c (the reproducible benchmark revision). Pinned
+        // by exact version, not revision, so this package stays version-stable
+        // and can be consumed by tag from downstream SemVer packages.
+        .package(url: "https://github.com/Blaizzy/mlx-audio-swift.git", exact: "0.1.3"),
         .package(url: "https://github.com/huggingface/swift-huggingface.git", exact: "0.9.0"),
     ],
     targets: [
