@@ -1,5 +1,5 @@
 {
-  "originHash" : "24d999663683f00a7a6404730aaa005a5ada9c435c200ecad39635042669df03",
+  "originHash" : "00ef6e6e48eaa084d21c22433e8e3831da535161f28512c0d7e0d27d5d84bc94",
   "pins" : [
     {
       "identity" : "eventsource",
@@ -150,8 +150,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fmcgoohan/SwiftSpeechSuite.git",
       "state" : {
-        "revision" : "586a251210890b9c5369eacdeb304ad8f9cd2030",
-        "version" : "0.1.0"
+        "revision" : "425c33099eb879a98b4266aabe1a36f0c4a6220a",
+        "version" : "0.2.0"
       }
     },
     {
