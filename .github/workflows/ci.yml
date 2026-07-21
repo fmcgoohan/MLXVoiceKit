@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache SwiftPM
+        uses: actions/cache@v4
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
+      - run: swift --version
+      # Build + test only. Native MLX generation is not exercised in CI: hosted
+      # runners are below the 16 GB unified-memory floor and lack the Metal
+      # toolchain download. See README.
+      - run: swift build
+      - run: swift test
