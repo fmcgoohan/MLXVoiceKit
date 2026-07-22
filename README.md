@@ -1,5 +1,10 @@
 # MLXVoiceKit
 
+[![CI](https://github.com/fmcgoohan/MLXVoiceKit/actions/workflows/ci.yml/badge.svg)](https://github.com/fmcgoohan/MLXVoiceKit/actions/workflows/ci.yml)
+![Swift](https://img.shields.io/badge/Swift-6.2-orange.svg)
+![Platform](https://img.shields.io/badge/platform-macOS%2026%2B%20·%20Apple%20Silicon-blue.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Native, in-process [Qwen3-TTS](https://huggingface.co/mlx-community) text-to-speech
 on Apple Silicon via [mlx-audio-swift](https://github.com/Blaizzy/mlx-audio-swift).
 Model download from Hugging Face, a hardware-aware memory budget, custom
