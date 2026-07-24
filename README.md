@@ -38,11 +38,47 @@ Need only raw synthesis? Depend on `MLXVoiceCore` alone and skip the session gra
 ])
 ```
 
+## Usage
+
+### MLXVoiceCore — stream PCM from text
+
+```swift
+import MLXVoiceCore
+
+let provider = NativeMLXProvider() // defaults to a Qwen3-TTS model id
+_ = try await provider.prepare { fraction in print("download \(fraction)") }
+
+for try await event in try provider.stream(NativeSpeechRequest(text: "Hello.")) {
+    if case .audio(let chunk) = event {
+        // chunk.samples: [Float], chunk.sampleRate: Int, chunk.duration: TimeInterval
+        play(chunk.samples, at: chunk.sampleRate)
+    }
+}
+```
+
+### MLXVoiceOrchestration — a session-backed engine
+
+```swift
+import MLXVoiceOrchestration
+
+let engine = NativeVoiceEngine()          // @MainActor ObservableObject
+engine.speak(text: "Read this aloud.", voice: nil)
+// engine.pause() / resume() / stop() / setPlaybackRate(_:) / seek(by:)
+// engine.readingSession is a SwiftReadingSession.ReadingSession you can persist.
+```
+
 ## Branding the injectable defaults
 
 ```swift
 NativeVoiceProfileStore.applicationSupportSubdirectory = "MyApp"
 ```
+
+## Documentation
+
+Rendered API docs (DocC) for both products:
+**https://fmcgoohan.github.io/MLXVoiceKit/documentation/**
+
+Built and published to GitHub Pages by `.github/workflows/docs.yml` on push to `main`.
 
 ## License
 

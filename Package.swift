@@ -27,6 +27,8 @@ let package = Package(
         // and can be consumed by tag from downstream SemVer packages.
         .package(url: "https://github.com/Blaizzy/mlx-audio-swift.git", exact: "0.1.3"),
         .package(url: "https://github.com/huggingface/swift-huggingface.git", exact: "0.9.0"),
+        // Docs-only; on main only, so version-pinned consumers never resolve it.
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.0"),
     ],
     targets: [
         .target(
