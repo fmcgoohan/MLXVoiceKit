@@ -67,6 +67,17 @@ engine.speak(text: "Read this aloud.", voice: nil)
 // engine.readingSession is a SwiftReadingSession.ReadingSession you can persist.
 ```
 
+`NativeVoiceEngine` conforms to `SwiftSpeechKit.PlaybackTransport`, so a host
+that also drives file players or a browser's own player can control them all
+uniformly — both of the engine's pre-audio phases (`.preparing`,
+`.synthesizing`) project to `TransportState.preparing`:
+
+```swift
+let transports: [any PlaybackTransport] = [filePlayer, engine]
+transports.pauseActive()
+transports.setPlaybackRate(1.75)
+```
+
 ## Branding the injectable defaults
 
 ```swift

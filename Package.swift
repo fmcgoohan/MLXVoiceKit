@@ -21,7 +21,7 @@ let package = Package(
         .library(name: "MLXVoiceOrchestration", targets: ["MLXVoiceOrchestration"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/fmcgoohan/SwiftSpeechSuite.git", from: "0.2.0"),
+        .package(url: "https://github.com/fmcgoohan/SwiftSpeechSuite.git", from: "0.4.0"),
         // v0.1.3 == commit d302a5c (the reproducible benchmark revision). Pinned
         // by exact version, not revision, so this package stays version-stable
         // and can be consumed by tag from downstream SemVer packages.

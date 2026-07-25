@@ -1,5 +1,5 @@
 {
-  "originHash" : "00ef6e6e48eaa084d21c22433e8e3831da535161f28512c0d7e0d27d5d84bc94",
+  "originHash" : "622d5945f67ac439347f0161ba6c065d644d9a50f07787b74573af87b5606877",
   "pins" : [
     {
       "identity" : "eventsource",
@@ -83,6 +83,24 @@
       }
     },
     {
+      "identity" : "swift-docc-plugin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-docc-plugin",
+      "state" : {
+        "revision" : "647c708be89f834fa6a6d4945442793a77ddf5b6",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "swift-docc-symbolkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-docc-symbolkit",
+      "state" : {
+        "revision" : "b45d1f2ed151d057b54504d653e0da5552844e34",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "swift-huggingface",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/huggingface/swift-huggingface.git",
@@ -150,8 +168,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fmcgoohan/SwiftSpeechSuite.git",
       "state" : {
-        "revision" : "425c33099eb879a98b4266aabe1a36f0c4a6220a",
-        "version" : "0.2.0"
+        "revision" : "938c32c18230dae3f9cd8514f5e97bf8a665c805",
+        "version" : "0.4.0"
       }
     },
     {
