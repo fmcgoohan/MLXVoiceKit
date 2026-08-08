@@ -83,7 +83,7 @@ public final class PCMStreamPlayer {
         engine.connect(timePitch, to: output, format: outputFormat)
         effectivePlaybackRate = playbackRate
         timePitch.rate = effectivePlaybackRate
-        timePitch.overlap = Self.timePitchOverlap(for: playbackRate)
+        timePitch.overlap = Self.fixedTimePitchOverlap
         converter = PCMStreamConverter(outputFormat: outputFormat)
         engine.prepare()
         try engine.start()
@@ -186,7 +186,12 @@ public final class PCMStreamPlayer {
 
     public func setPlaybackRate(_ rate: Float) {
         playbackRate = PlaybackRate.normalized(rate)
-        timePitch.overlap = Self.timePitchOverlap(for: playbackRate)
+        // Never mutate timePitch.overlap while the engine is rendering:
+        // reconfiguring the phase vocoder mid-stream (observed on the
+        // 1.5x -> 1x transition, overlap 32 -> 8) leaves it in a degraded,
+        // band-limited state — output sounds like a telephone line until
+        // another rate change happens to reset it. Overlap is fixed at
+        // engine setup instead.
         updateAdaptivePlaybackRate()
         startPlaybackIfReady(force: inputFinished)
     }
@@ -402,13 +407,12 @@ public final class PCMStreamPlayer {
         }
     }
 
-    static func timePitchOverlap(for rate: Float) -> Float {
-        switch PlaybackRate.normalized(rate) {
-        case ..<1.25: 8
-        case ..<1.5: 16
-        default: 32
-        }
-    }
+    /// One overlap for every rate, applied once at engine setup. The old
+    /// per-rate tiers (8/16/32) required live mutation on rate changes,
+    /// which corrupts AVAudioUnitTimePitch mid-stream (see setPlaybackRate).
+    /// 32 is the highest-quality setting; the extra CPU for one mono
+    /// narration stream is negligible on Apple Silicon.
+    static let fixedTimePitchOverlap: Float = 32
 
     static func shouldEnterRebuffering(
         inputFinished: Bool,

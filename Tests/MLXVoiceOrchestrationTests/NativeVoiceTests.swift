@@ -90,10 +90,9 @@ private final class UnloadCounter {
     #expect(PCMStreamPlayer.coldStartBufferedAudioSeconds(for: 1) == 10)
     #expect(PCMStreamPlayer.coldStartBufferedAudioSeconds(for: 1.5) == 12)
     #expect(PCMStreamPlayer.coldStartBufferedAudioSeconds(for: 2) == 14)
-    #expect(PCMStreamPlayer.timePitchOverlap(for: 1) == 8)
-    #expect(PCMStreamPlayer.timePitchOverlap(for: 1.25) == 16)
-    #expect(PCMStreamPlayer.timePitchOverlap(for: 1.5) == 32)
-    #expect(PCMStreamPlayer.timePitchOverlap(for: 2) == 32)
+    // Overlap is rate-independent and set once at engine setup — live
+    // mutation corrupts AVAudioUnitTimePitch (fix/timepitch-overlap).
+    #expect(PCMStreamPlayer.fixedTimePitchOverlap == 32)
 }
 
 @Test @MainActor func appUsesLargerPCMChunksAtHighPlaybackRates() {
