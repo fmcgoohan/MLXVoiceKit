@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: macos-26
+    runs-on: xcode-27  # GitHub Xcode 27 image (macOS 27, arm64); labels are per Xcode major
     steps:
       - uses: actions/checkout@v4
       - name: Build DocC (combined, static hosting)

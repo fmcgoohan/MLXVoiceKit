@@ -250,6 +250,13 @@ public final class NativeMLXProvider {
                             continuation.yield(.statistics(NativeGenerationStatistics(info)))
                         case .token:
                             break
+                        case .progress:
+                            // Fractional denoise progress (mlx-audio-swift 0.1.7+)
+                            // from diffusion-style models; Qwen3-TTS streams
+                            // audio directly and never emits it. Explicit case,
+                            // not `default`, so the next upstream addition is a
+                            // compile error here rather than a silent drop.
+                            break
                         }
                     }
                     continuation.finish()

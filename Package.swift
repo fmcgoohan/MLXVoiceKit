@@ -22,10 +22,12 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/fmcgoohan/SwiftSpeechSuite.git", from: "0.4.0"),
-        // v0.1.3 == commit d302a5c (the reproducible benchmark revision). Pinned
-        // by exact version, not revision, so this package stays version-stable
-        // and can be consumed by tag from downstream SemVer packages.
-        .package(url: "https://github.com/Blaizzy/mlx-audio-swift.git", exact: "0.1.3"),
+        // Pinned by exact version, not revision, so this package stays
+        // version-stable and can be consumed by tag from downstream SemVer
+        // packages. 0.1.7 (2026-10-26) tracks mlx-swift 0.32.3+, fixes the
+        // Qwen3-TTS non-streaming speaking rate, and no longer pulls in
+        // MLXLMCommon/MLXLLM.
+        .package(url: "https://github.com/Blaizzy/mlx-audio-swift.git", exact: "0.1.7"),
         .package(url: "https://github.com/huggingface/swift-huggingface.git", exact: "0.9.0"),
         // Docs-only; on main only, so version-pinned consumers never resolve it.
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.0"),
